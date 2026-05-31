@@ -27,13 +27,18 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install pytest-html
 
       - name: Check installed packages
-        run: pip list | grep pytest
+        run: |
+          pip list | grep pytest
+          pip list | grep html
+          cat requirements.txt
 
       - name: Run tests
-        run: pytest --html=reports/report.html --self-contained-html
+        run: pytest
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
