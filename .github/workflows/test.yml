@@ -29,8 +29,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Check installed packages
+        run: pip list | grep pytest
+
       - name: Run tests
-        run: pytest
+        run: pytest --html=reports/report.html --self-contained-html
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
